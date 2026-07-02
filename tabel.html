@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GymFit - Daftar Member</title>
+    <meta name="description" content="Daftar member GymFit - Lihat semua data anggota gym yang terdaftar.">
+    <link rel="icon" href="/Gemini_Generated_Image_mf7mttmf7mttmf7m-removebg-preview.png" type="image/jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- Link CSS Eksternal -->
+    <link rel="stylesheet" href="/CSS/tabel.css">
+</head>
+
+<body>
+
+    <!-- ═══════════════════════════
+         HEADER
+    ═══════════════════════════ -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="beranda.html" class="logo">GymFit</a>
+
+            <input type="checkbox" id="navtoggle" class="navtoggle">
+            <label for="navtoggle" class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <div class="nav-menu-wrapper">
+                <ul class="nav-links">
+                    <li><a href="/beranda.html">Beranda</a></li>
+                    <li><a href="/form.html">Pendaftaran</a></li>
+                    <li><a href="#">Latihan</a></li>
+                    <li><a href="/tabel.html" style="color: var(--text-main);">Member Gym</a></li>
+                </ul>
+                <a href="form.html" class="btn btn-outline">+ Tambah Member</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══════════════════════════
+         TOAST NOTIFICATION
+    ═══════════════════════════ -->
+    <div id="toast" class="toast"></div>
+
+    <!-- ═══════════════════════════
+         PAGE HEADER
+    ═══════════════════════════ -->
+    <div class="page-header">
+        <div class="page-title-block">
+            <div class="page-eyebrow">Database Member</div>
+            <h1 class="page-title">Daftar <span>Member</span></h1>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════
+         STATS ROW
+    ═══════════════════════════ -->
+    <div class="stats-row">
+        <div class="stat-pill">
+            <div class="sp-icon">👥</div>
+            <div>
+                <div class="sp-val" id="statTotal">0</div>
+                <div class="sp-label">Total Member</div>
+            </div>
+        </div>
+        <div class="stat-pill">
+            <div class="sp-icon">🗓️</div>
+            <div>
+                <div class="sp-val" id="statBulanan">0</div>
+                <div class="sp-label">Bulanan</div>
+            </div>
+        </div>
+        <div class="stat-pill">
+            <div class="sp-icon">🔥</div>
+            <div>
+                <div class="sp-val" id="statKuartalan">0</div>
+                <div class="sp-label">Kuartalan</div>
+            </div>
+        </div>
+        <div class="stat-pill">
+            <div class="sp-icon">👑</div>
+            <div>
+                <div class="sp-val" id="statTahunan">0</div>
+                <div class="sp-label">Tahunan</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════
+         TOOLBAR (Search & Filter)
+    ═══════════════════════════ -->
+    <div class="toolbar">
+        <div class="search-wrap">
+            <span class="icon">🔍</span>
+            <input type="text" id="searchInput" class="search-input" placeholder="Cari nama, email, kota...">
+        </div>
+        <select id="filterPackage" class="filter-select">
+            <option value="">Semua Paket</option>
+            <option value="Bulanan">🗓️ Bulanan</option>
+            <option value="Kuartalan">🔥 Kuartalan</option>
+            <option value="Tahunan">👑 Tahunan</option>
+        </select>
+        <select id="filterGender" class="filter-select">
+            <option value="">Semua Gender</option>
+            <option value="Pria">Pria</option>
+            <option value="Wanita">Wanita</option>
+            <option value="Lainnya">Lainnya</option>
+        </select>
+        <div class="toolbar-right">
+            <button class="btn btn-outline" id="btnDeleteAll" style="display:none;">🗑️ Hapus Semua</button>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════
+         TABLE (Kosong, terisi dari form)
+    ═══════════════════════════ -->
+    <div class="table-wrap">
+        <div class="table-card">
+            <div class="table-scroll" style="overflow-x:auto;">
+                <table id="memberTable">
+                    <thead>
+                        <tr>
+                            <th>NO</th>
+                            <th>NAMA</th>
+                            <th>EMAIL</th>
+                            <th>TELEPON</th>
+                            <th class="hide-sm">GENDER</th>
+                            <th class="hide-sm">KOTA</th>
+                            <th class="hide-sm">TGL LAHIR</th>
+                            <th>PAKET</th>
+                            <th>TANGGAL DAFTAR</th>
+                            <th>AKSI</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- Tabel kosong — data akan muncul setelah form diisi -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <div id="pagination" class="pagination" style="display:none;">
+                <div class="pag-info" id="pagInfo">Menampilkan 0 dari 0 member</div>
+                <div class="pag-btns" id="pagBtns"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════
+         EDIT MODAL
+    ═══════════════════════════ -->
+    <div id="editModal" class="modal-backdrop">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">✏️ Edit Member</div>
+                <button class="modal-close" id="editClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="editForm">
+                    <input type="hidden" id="editIndex">
+                    <div class="mfield-row">
+                        <div class="mfield">
+                            <label>Nama Depan</label>
+                            <input type="text" id="editFirstName" required>
+                        </div>
+                        <div class="mfield">
+                            <label>Nama Belakang</label>
+                            <input type="text" id="editLastName" required>
+                        </div>
+                    </div>
+                    <div class="mfield">
+                        <label>Email</label>
+                        <input type="email" id="editEmail" required>
+                    </div>
+                    <div class="mfield-row">
+                        <div class="mfield">
+                            <label>No. Telepon</label>
+                            <input type="tel" id="editPhone" required>
+                        </div>
+                        <div class="mfield">
+                            <label>Tanggal Lahir</label>
+                            <input type="date" id="editDob">
+                        </div>
+                    </div>
+                    <div class="mfield-row">
+                        <div class="mfield">
+                            <label>Jenis Kelamin</label>
+                            <select id="editGender">
+                                <option value="">Pilih...</option>
+                                <option value="Pria">Pria</option>
+                                <option value="Wanita">Wanita</option>
+                                <option value="Lainnya">Lainnya</option>
+                            </select>
+                        </div>
+                        <div class="mfield">
+                            <label>Kota</label>
+                            <input type="text" id="editCity">
+                        </div>
+                    </div>
+                    <div class="mfield">
+                        <label>Paket</label>
+                        <select id="editPackage" required>
+                            <option value="Bulanan">🗓️ Bulanan</option>
+                            <option value="Kuartalan">🔥 Kuartalan</option>
+                            <option value="Tahunan">👑 Tahunan</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline" id="editCancel">Batal</button>
+                        <button type="submit" class="btn btn-primary" style="background:var(--primary);color:#0a0a0a;">💾 Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════
+         DELETE CONFIRM MODAL
+    ═══════════════════════════ -->
+    <div id="deleteModal" class="modal-backdrop delete-modal">
+        <div class="modal">
+            <div class="modal-body">
+                <div class="del-icon">⚠️</div>
+                <div class="del-title">Hapus Member?</div>
+                <div class="del-sub">Data <span class="del-name" id="delName"></span> akan dihapus secara permanen.</div>
+                <div class="del-actions">
+                    <button class="btn btn-outline" id="delCancel">Batal</button>
+                    <button class="btn" id="delConfirm" style="background:#ef4444;color:white;">🗑️ Hapus</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════
+         FOOTER
+    ═══════════════════════════ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">GymFit</div>
+                <ul class="footer-links">
+                    <li><a href="/beranda.html">Beranda</a></li>
+                    <li><a href="/form.html">Pendaftaran</a></li>
+                    <li><a href="#">Latihan</a></li>
+                    <li><a href="/tabel.html">Member Gym</a></li>
+                </ul>
+            </div>
+            <hr class="footer-divider">
+            <p class="footer-copy">&copy; 2026 GymFit Platform. Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+
+    <script src="/js/script.js"></script>
+
+</body>
+
+</html>

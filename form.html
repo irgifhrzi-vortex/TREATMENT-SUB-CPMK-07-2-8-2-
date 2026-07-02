@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GymFit - Pendaftaran Member</title>
+    <link rel="icon" href="/Gemini_Generated_Image_mf7mttmf7mttmf7m-removebg-preview.png" type="image/jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- Link CSS Eksternal -->
+    <link rel="stylesheet" href="/CSS/form.css">
+</head>
+
+<body>
+
+    <!-- ═══════════════════════════
+         HEADER
+    ═══════════════════════════ -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="beranda.html" class="logo">GymFit</a>
+
+            <input type="checkbox" id="navtoggle" class="navtoggle">
+            <label for="navtoggle" class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <div class="nav-menu-wrapper">
+                <ul class="nav-links">
+                    <li><a href="/beranda.html">Beranda</a></li>
+                    <li><a href="/form.html" style="color: var(--text-main);">Pendaftaran</a></li>
+                    <li><a href="#">Latihan</a></li>
+                    <li><a href="/tabel.html">Member Gym</a></li>
+                </ul>
+                <a href="beranda.html" class="btn btn-outline">← Kembali</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="page-hero">
+                <div class="page-eyebrow">Pendaftaran Member</div>
+                <h1>Mulai<br><span class="highlight">Perjalananmu</span></h1>
+                <p>Isi data diri dan pilih paket yang sesuai. Proses pendaftaran hanya butuh 2 menit.</p>
+            </div>
+
+            <form id="formPendaftaran" class="form-card">
+                <fieldset>
+                    <div class="panel-title">Data Pendaftaran</div>
+                    <div class="panel-sub">Informasi dasar untuk akun member kamu.</div>
+
+                    <p id="formError" class="form-error"></p>
+
+                    <div class="field-row">
+                        <div class="field">
+                            <label>Nama Depan <span class="required">*</span></label>
+                            <input type="text" id="first-name" placeholder="Budi" />
+                            <span class="field-error" id="err-first-name">Nama depan wajib diisi.</span>
+                        </div>
+                        <div class="field">
+                            <label>Nama Belakang <span class="required">*</span></label>
+                            <input type="text" id="last-name" placeholder="Santoso" />
+                            <span class="field-error" id="err-last-name">Nama belakang wajib diisi.</span>
+                        </div>
+                    </div>
+
+                    <div class="field-row single">
+                        <div class="field">
+                            <label>Email <span class="required">*</span></label>
+                            <input type="email" id="email" placeholder="budi@email.com" />
+                            <span class="field-error" id="err-email">Masukkan email yang valid.</span>
+                        </div>
+                    </div>
+
+                    <div class="field-row">
+                        <div class="field">
+                            <label>No. Telepon <span class="required">*</span></label>
+                            <input type="tel" id="phone" placeholder="08xxxxxxxxxx" />
+                            <span class="field-error" id="err-phone">Nomor telepon wajib diisi.</span>
+                        </div>
+                        <div class="field">
+                            <label>Tanggal Lahir</label>
+                            <input type="date" id="dob" />
+                        </div>
+                    </div>
+
+                    <div class="field-row">
+                        <div class="field">
+                            <label>Jenis Kelamin</label>
+                            <select id="gender">
+                                <option value="">Pilih...</option>
+                                <option value="Pria">Pria</option>
+                                <option value="Wanita">Wanita</option>
+                                <option value="Lainnya">Lainnya</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>Kota</label>
+                            <input type="text" id="city" placeholder="Medan" />
+                        </div>
+                    </div>
+
+                    <div class="field-row single">
+                        <div class="field">
+                            <label>Pilih Paket<span class="required">*</span></label>
+                        </div>
+                    </div>
+                    <div class="package-grid">
+                        <div>
+                            <input type="radio" name="package" id="pkg-1" value="Bulanan" class="package-option">
+                            <label for="pkg-1" class="package-label">
+                                <div class="pkg-icon">🗓️</div>
+                                <div class="pkg-name">BULANAN</div>
+                                <div class="pkg-duration">1 Bulan</div>
+                                <div class="pkg-price">Rp 200K</div>
+                            </label>
+                        </div>
+                        <div>
+                            <input type="radio" name="package" id="pkg-2" value="Kuartalan" class="package-option">
+                            <label for="pkg-2" class="package-label">
+                                <div class="pkg-icon">🔥</div>
+                                <div class="pkg-name">KUARTALAN</div>
+                                <div class="pkg-duration">3 Bulan</div>
+                                <div class="pkg-price">Rp 500K</div>
+                            </label>
+                        </div>
+                        <div>
+                            <input type="radio" name="package" id="pkg-3" value="Tahunan" class="package-option">
+                            <label for="pkg-3" class="package-label">
+                                <div class="pkg-icon">👑</div>
+                                <div class="pkg-name">TAHUNAN</div>
+                                <div class="pkg-duration">12 Bulan</div>
+                                <div class="pkg-price">Rp 1.5Jt</div>
+                            </label>
+                        </div>
+                        <span class="field-error" id="err-package">Paket wajib dipilih.</span>
+                    </div>
+                    <div class="form-nav">
+                        <button type="submit" class="btn btn-primary">🚀 Daftar Sekarang</button>
+                        <button type="reset" class="btn btn-outline">↺ Reset</button>
+                    </div>
+                </fieldset>
+            </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- ═══════════════════════════
+         FOOTER
+    ═══════════════════════════ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">GymFit</div>
+                <ul class="footer-links">
+                    <li><a href="#fitur">Beranda</a></li>
+                    <li><a href="#jadwal">Pendaftaran</a></li>
+                    <li><a href="#latihan">Latihan</a></li>
+                    <li><a href="#cara-kerja">Member Gym</a></li>
+                </ul>
+            </div>
+            <hr class="footer-divider">
+            <p class="footer-copy">&copy; 2026 GymFit Platform. Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+
+    <script src="/js/script.js"></script>
+
+</body>
+
+</html>
